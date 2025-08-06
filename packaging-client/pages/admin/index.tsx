@@ -15,27 +15,17 @@ type ProductType = {
 
 type RequestRaw = {
   id: number;
-  customerId: number;
-  products: {
-    productTypeId: number;
-    quantity: number;
-  }[];
+  customerId?: number; 
+  products: { productTypeId?: number; productId?: number; quantity: number }[];
   interestedSupplierIds: number[];
 };
 
-// Request type
+
 type Request = {
   id: number;
   customerName: string;
-  products: {
-    id: number;
-    name: string;
-    quantity: number;
-  }[];
-  interestedSuppliers: {
-    id: number;
-    name: string;
-  }[];
+  products: { id: number; name: string; quantity: number }[];
+  interestedSuppliers: { id: number; name: string }[];
 };
 
 export default function AdminPage() {
@@ -58,33 +48,46 @@ export default function AdminPage() {
           fetch('http://localhost:3001/requests'),
           fetch('http://localhost:3001/product-types'),
         ]);
-
+  
         const [usersData, requestsData, productsData]: [User[], RequestRaw[], ProductType[]] = await Promise.all([
           usersRes.json(),
           requestsRes.json(),
           productsRes.json(),
         ]);
-
+  
         setUsers(usersData);
         setProducts(productsData);
-
-        // Requests
-        const enrichedRequests: Request[] = requestsData.map((req) => {
+  
+        // Eksik customerId'ye default atama
+        const defaultCustomer = usersData.find(u => u.role === 'customer');
+        const safeRequestsData = requestsData.map(req => {
+          if (!req.customerId) {
+            return {
+              ...req,
+              customerId: defaultCustomer ? defaultCustomer.id : 0,
+            };
+          }
+          return req;
+        });
+  
+        // Requests zenginleştirme
+        const enrichedRequests: Request[] = safeRequestsData.map((req) => {
           const customer = usersData.find((u) => u.id === req.customerId);
-
+        
           const interestedSuppliers = req.interestedSupplierIds
             .map((sid) => usersData.find((u) => u.id === sid))
             .filter((u): u is User => u !== undefined);
-
+        
           const products = req.products.map((p) => {
-            const prod = productsData.find((pt) => pt.id === p.productTypeId);
+            const prodId = (p as any).productTypeId ?? (p as any).productId;
+            const prod = productsData.find((pt) => pt.id === prodId);
             return {
-              id: p.productTypeId,
+              id: prodId,
               name: prod ? prod.name : 'Bilinmeyen Ürün',
               quantity: p.quantity,
             };
           });
-
+        
           return {
             id: req.id,
             customerName: customer ? customer.username : 'Bilinmeyen Müşteri',
@@ -95,16 +98,17 @@ export default function AdminPage() {
             })),
           };
         });
-
+        
+  
         setRequests(enrichedRequests);
       } catch (error) {
         console.error('Veriler alınırken hata oluştu:', error);
       }
     }
-
+  
     fetchData();
   }, []);
-
+  
   // Add product with POST request
   const handleAddProduct = async () => {
     if (!newProductName.trim()) {

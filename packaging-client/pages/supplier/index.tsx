@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
 
+interface InterestedSupplier {
+  id: number;
+  name: string;
+  status?: 'approved' | 'rejected' | null; 
+}
+
 interface Request {
   id: number;
   customer: string;
   products: string[];
-  interestedSuppliers: string[];
+  interestedSuppliers: InterestedSupplier[];
   status?: 'approved' | 'rejected' | null;
 }
+
 
 interface ProductType {
   id: number;
@@ -71,7 +78,8 @@ export default function SupplierPage() {
           id: r.id,
           customer: `Müşteri ${r.id}`,
           products: r.products.map(p => productMap[p.productId] || 'Bilinmeyen Ürün'),
-          interestedSuppliers: r.interestedSuppliers,
+          // Bu kısmı string dizisi yerine {id, name} dizisi yapalım:
+          interestedSuppliers: r.interestedSuppliers.map((name, idx) => ({ id: idx, name })), 
           status: statusData[r.id] || null,
         }));
 

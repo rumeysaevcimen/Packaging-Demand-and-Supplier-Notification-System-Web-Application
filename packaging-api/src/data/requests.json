@@ -95,13 +95,14 @@
   },
   {
     "id": 7,
+    "customerId": 2,
     "products": [
       {
-        "productId": 7,
+        "productTypeId": 7,
         "quantity": 100
       },
       {
-        "productId": 2,
+        "productTypeId": 2,
         "quantity": 1
       }
     ],
@@ -110,13 +111,14 @@
   },
   {
     "id": 8,
+    "customerId": 2,
     "products": [
       {
-        "productId": 7,
+        "productTypeId": 7,
         "quantity": 1
       },
       {
-        "productId": 1,
+        "productTypeId": 1,
         "quantity": 1
       }
     ],
@@ -133,5 +135,27 @@
     ],
     "interestedSupplierIds": [],
     "createdAt": "2025-08-05T23:50:36.317Z"
+  },
+  {
+    "id": 10,
+    "products": [
+      {
+        "productId": 8,
+        "quantity": 1
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-06T02:27:07.203Z"
+  },
+  {
+    "id": 11,
+    "products": [
+      {
+        "productId": 1,
+        "quantity": 1
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-06T02:59:47.442Z"
   }
 ]
