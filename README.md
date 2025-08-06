@@ -100,20 +100,6 @@ Frontend runs on `http://localhost:3000` by default.
 
 ---
 
-## Deployment (Bonus)
-
-To deploy on platforms like **Heroku** or **Vercel**, you can:
-
-- For **Backend (NestJS)**: Configure a Procfile (Heroku) or serverless deployment.
-- For **Frontend (Next.js)**: Deploy directly on Vercel (recommended) by connecting the GitHub repo.
-- Set environment variables if needed for API URLs.
-- Use build scripts:
-  - Backend: `npm run build` and `npm start`
-  - Frontend: `npm run build` and `npm start`
-
-Refer to platform-specific documentation for detailed deployment steps.
-
----
 
 
 
