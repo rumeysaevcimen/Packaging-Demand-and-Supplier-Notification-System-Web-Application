@@ -1,2 +1,120 @@
-# Packaging-Demand-and-Supplier-Notification-System-Web-Application
-paketera-case-study
+# Packaging Supplier & Customer Portal
+
+A simple web application built with Next.js (React) frontend and NestJS backend for managing packaging product requests between customers and suppliers.  
+Supports basic authentication, product filtering, request management, and supplier interest tracking.
+
+---
+
+## Features
+
+- **Basic Auth Authentication** using mock JSON user data.  
+- **Customer Requests Management**: Customers can create product requests saved in backend/localStorage.  
+- **Supplier Panel**: Suppliers can view requests, filter by product types, and express interest (approve/reject) in requests.  
+- **Admin Panel (planned)**: Manage users, products, and requests (not detailed here).  
+- **Dynamic Product Types** loaded from backend JSON file via REST API.  
+- **LocalStorage-based persistence** for supplier approval/rejection statuses.
+
+---
+
+## Tech Stack
+
+- Frontend: Next.js (React + TypeScript)  
+- Backend: NestJS (TypeScript)  
+- Data Storage: JSON files for mock data (users, product types, requests)  
+- Authentication: Basic Auth simulated with JSON-based user validation  
+- Communication: REST API between frontend and backend
+
+---
+
+## Project Structure
+
+```
+/packaging-api        # Backend (NestJS)
+  /src
+    /data             # JSON mock data files
+    /controllers      # API controllers
+    ...
+/packaging-client     # Frontend (Next.js)
+  /pages
+  /components
+  ...
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16+ recommended)
+- npm or yarn
+- Git
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/rumeysaevcimen/Packaging-Demand-and-Supplier-Notification-System-Web-Application.git
+cd Packaging-Demand-and-Supplier-Notification-System-Web-Application
+```
+
+2. Install backend dependencies and run backend server:
+
+```bash
+cd packaging-api
+npm install
+npm run start:dev
+```
+
+Backend server runs on `http://localhost:3001` by default.
+
+3. In a new terminal, install frontend dependencies and run frontend:
+
+```bash
+cd packaging-client
+npm install
+npm run dev
+```
+
+Frontend runs on `http://localhost:3000` by default.
+
+---
+
+## Usage
+
+- Access the frontend on `http://localhost:3000`.
+- Login using mock users defined in JSON.
+- Use Admin panel to manage product types and view customer requests.
+- Use Supplier panel to filter requests by product and approve/reject interests.
+- Data persistence is simulated via JSON files in backend and LocalStorage in frontend.
+
+---
+
+## Notes
+
+- Basic Authentication is mocked using JSON user data.
+- Data files are located in the backend under `/src/data`.
+- Product types and customer requests can be added via the backend API or admin frontend.
+- The project can be deployed on platforms like Heroku or Vercel (setup not included here).
+
+---
+
+## Deployment (Bonus)
+
+To deploy on platforms like **Heroku** or **Vercel**, you can:
+
+- For **Backend (NestJS)**: Configure a Procfile (Heroku) or serverless deployment.
+- For **Frontend (Next.js)**: Deploy directly on Vercel (recommended) by connecting the GitHub repo.
+- Set environment variables if needed for API URLs.
+- Use build scripts:
+  - Backend: `npm run build` and `npm start`
+  - Frontend: `npm run build` and `npm start`
+
+Refer to platform-specific documentation for detailed deployment steps.
+
+---
+
+
+
+
