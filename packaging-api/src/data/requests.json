@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "customerId": 2,
+    "products": [
+      {
+        "productTypeId": 1,
+        "quantity": 10
+      },
+      {
+        "productTypeId": 2,
+        "quantity": 5
+      }
+    ],
+    "interestedSupplierIds": [
+      6,
+      7
+    ],
+    "createdAt": "2025-08-01T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "customerId": 3,
+    "products": [
+      {
+        "productTypeId": 2,
+        "quantity": 100
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-05T22:14:57.779Z"
+  },
+  {
+    "id": 3,
+    "customerId": 2,
+    "products": [
+      {
+        "productTypeId": 2,
+        "quantity": 1
+      },
+      {
+        "productTypeId": 1,
+        "quantity": 1
+      }
+    ],
+    "interestedSupplierIds": [
+      7
+    ],
+    "createdAt": "2025-08-05T22:29:14.845Z"
+  },
+  {
+    "id": 4,
+    "customerId": 4,
+    "products": [
+      {
+        "productTypeId": 3,
+        "quantity": 200
+      },
+      {
+        "productTypeId": 4,
+        "quantity": 150
+      }
+    ],
+    "interestedSupplierIds": [
+      8
+    ],
+    "createdAt": "2025-08-10T09:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "customerId": 5,
+    "products": [
+      {
+        "productTypeId": 5,
+        "quantity": 300
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-12T15:30:00.000Z"
+  },
+  {
+    "id": 6,
+    "customerId": 3,
+    "products": [
+      {
+        "productTypeId": 6,
+        "quantity": 50
+      }
+    ],
+    "interestedSupplierIds": [
+      6,
+      9
+    ],
+    "createdAt": "2025-08-13T18:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "products": [
+      {
+        "productId": 7,
+        "quantity": 100
+      },
+      {
+        "productId": 2,
+        "quantity": 1
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-05T23:47:05.290Z"
+  },
+  {
+    "id": 8,
+    "products": [
+      {
+        "productId": 7,
+        "quantity": 1
+      },
+      {
+        "productId": 1,
+        "quantity": 1
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-05T23:49:09.369Z"
+  },
+  {
+    "id": 9,
+    "products": [
+      {
+        "productId": 7,
+        "quantity": 100
+      }
+    ],
+    "interestedSupplierIds": [],
+    "createdAt": "2025-08-05T23:50:36.317Z"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
+
+  { "id": 2, "username": "customer1", "password": "1234", "role": "customer" },
+  { "id": 3, "username": "customer2", "password": "1234", "role": "customer" },
+  { "id": 4, "username": "customer3", "password": "1234", "role": "customer" },
+  { "id": 5, "username": "customer4", "password": "1234", "role": "customer" },
+
+  { "id": 6, "username": "supplier1", "password": "1234", "role": "supplier" },
+  { "id": 7, "username": "supplier2", "password": "1234", "role": "supplier" },
+  { "id": 8, "username": "supplier3", "password": "1234", "role": "supplier" },
+  { "id": 9, "username": "supplier4", "password": "1234", "role": "supplier" }
+]
