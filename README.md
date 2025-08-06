@@ -85,13 +85,15 @@ Frontend runs on `http://localhost:3000` by default.
 
 ## Usage
 
-- Access the frontend on `http://localhost:3000`.
-- Login using mock users defined in JSON.
-- Use Admin panel to manage product types and view customer requests.
-- Use Supplier panel to filter requests by product and approve/reject interests.
-- Data persistence is simulated via JSON files in backend and LocalStorage in frontend.
-
----
+- The **`/login`** URL is used as the application home page.
+- Users access the application from the `http://localhost:3000/login` URL to log in.
+- Log in by entering your username and password.
+- If the login is successful, you will be redirected to the relevant page according to your role.
+- Use the Admin panel to manage product types and view customer requests.
+- Use the Customer panel to create product requests and view your existing requests.
+- Use the Supplier panel to filter requests by product and approve/reject interests.
+- Data persistence is simulated through JSON files on the backend and LocalStorage on the frontend.
+  
 
 ## Notes
 
