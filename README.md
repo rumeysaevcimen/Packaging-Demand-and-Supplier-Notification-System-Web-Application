@@ -29,18 +29,20 @@ Supports basic authentication, product filtering, request management, and suppli
 ## Project Structure
 
 ```
-/packaging-api        # Backend (NestJS)
-  /src
-    /data             # JSON mock data files
-    /controllers      # API controllers
-    ...
-/packaging-client     # Frontend (Next.js)
-  /pages
-  /components
-  ...
+packaging-api/ Backend (NestJS)
+├── src/
+│ ├── data/ JSON mock data files
+│ ├── controllers/ API controllers
+│ └── ... Other backend files
+└── ...
+
+packaging-client/ Frontend (Next.js)
+├── pages/ Next.js pages
+├── components/ React components
+└── ... Other frontend files
 ```
 
----
+
 
 ## Getting Started
 
