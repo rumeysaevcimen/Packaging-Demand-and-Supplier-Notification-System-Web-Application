@@ -17,14 +17,14 @@ export default function CustomerPage() {
   const [newOrder, setNewOrder] = useState<{ productId: number; quantity: number }[]>([]);
   const [selectedRequest, setSelectedRequest] = useState<OrderRequest | null>(null);
 
-  // Onay/Red durumu (isteğe bağlı, localStorage ile saklanıyor)
+  // Approval/Rejection status (stored with localStorage)
   const [requestStatuses, setRequestStatuses] = useState<Record<number, 'approved' | 'rejected' | null>>({});
 
-  // LocalStorage anahtarları
+  // LocalStorage keys
   const STORAGE_KEY_REQUESTS = 'customer-order-requests';
   const STORAGE_KEY_STATUSES = 'customer-request-statuses';
 
-  // Sabit ürün tipleri
+  // Fixed product types
   useEffect(() => {
     async function fetchProductTypes() {
       try {
@@ -34,7 +34,7 @@ export default function CustomerPage() {
         setProductTypes(data);
       } catch (err) {
         console.error(err);
-        // Hata durumunda statik ürünler de koyabilirsin fallback olarak:
+        
         setProductTypes([
           { id: 1, name: 'Karton Koli' },
           { id: 2, name: 'Poşet' },
@@ -46,7 +46,7 @@ export default function CustomerPage() {
     fetchProductTypes();
   }, []);
 
-  // Başlangıçta localStorage'dan talepleri ve durumları oku
+  // Read requests and states from localStorage at the beginning
   useEffect(() => {
     const storedRequests = localStorage.getItem(STORAGE_KEY_REQUESTS);
     if (storedRequests) {
@@ -56,7 +56,7 @@ export default function CustomerPage() {
         setOrderRequests([]);
       }
     } else {
-      // Başlangıç verisi
+      // Beginning data
       setOrderRequests([
         {
           id: 101,
@@ -87,20 +87,20 @@ export default function CustomerPage() {
     }
   }, []);
 
-  // orderRequests değiştiğinde localStorage'a kaydet
+  // save to localStorage when orderRequests changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_REQUESTS, JSON.stringify(orderRequests));
   }, [orderRequests]);
 
-  // requestStatuses değiştiğinde localStorage'a kaydet
+  // save to localStorage when requestStatuses change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_STATUSES, JSON.stringify(requestStatuses));
   }, [requestStatuses]);
 
-  // Ürün id'den ismini bul
+  // Find the name from product id
   const getProductName = (id: number) => productTypes.find(p => p.id === id)?.name || 'Bilinmiyor';
 
-  // İsim maskeleme (örn: Ahmet -> Ah***)
+  // Name masking
   const maskName = (name: string) => {
     const parts = name.split(' ');
     return parts
@@ -111,26 +111,26 @@ export default function CustomerPage() {
       .join(' ');
   };
 
-  // Yeni ürün satırı ekle
+  // New product row
   const addProductToNewOrder = () => {
     setNewOrder([...newOrder, { productId: productTypes[0]?.id || 0, quantity: 1 }]);
   };
 
-  // Yeni üründe ürün tipini güncelle
+  // Update product type in new product
   const updateProductInNewOrder = (index: number, productId: number) => {
     const newArr = [...newOrder];
     newArr[index].productId = productId;
     setNewOrder(newArr);
   };
 
-  // Yeni üründe miktarı güncelle
+  // Update quantity in new product
   const updateQuantityInNewOrder = (index: number, quantity: number) => {
     const newArr = [...newOrder];
     newArr[index].quantity = quantity > 0 ? quantity : 1;
     setNewOrder(newArr);
   };
 
-  // Yeni talebi kaydet
+  // Save new request
   const saveNewOrder = async () => {
     if (newOrder.length === 0) {
       alert('En az bir ürün eklemelisiniz.');
@@ -143,20 +143,19 @@ export default function CustomerPage() {
       return;
     }
 
-    // Yeni id üret (en büyük id + 1)
+    // Generate new id
     const newId = orderRequests.length > 0 ? Math.max(...orderRequests.map(o => o.id)) + 1 : 1;
 
     const newRequest: OrderRequest = {
       id: newId,
       products: newOrder,
-      interestedSuppliers: [], // Başlangıçta boş
+      interestedSuppliers: [],
     };
 
-    // Local state güncelle
+    // Update local state
     setOrderRequests([newRequest, ...orderRequests]);
     setNewOrder([]);
 
-    // Backend'e gönder (eğer backend varsa)
     try {
       await fetch('http://localhost:3001/requests', {
         method: 'POST',
@@ -174,7 +173,7 @@ export default function CustomerPage() {
     <div className="container">
       <h1>🧾 Müşteri Paneli</h1>
 
-      {/* Ürün Türleri ve Yeni Talep */}
+      {/* Product Types and New Demand */}
       <section className="section">
         <h2>Ürün Türleri</h2>
         <ul className="list-disc">
@@ -226,7 +225,7 @@ export default function CustomerPage() {
         </button>
       </section>
 
-      {/* Sipariş Talepleri Listesi */}
+      {/* Order Requests List */}
       <section className="section" style={{ marginTop: '32px' }}>
         <h2>Sipariş Taleplerim</h2>
         {orderRequests.length === 0 ? (
@@ -263,7 +262,7 @@ export default function CustomerPage() {
                   İlgilenen tedarikçi sayısı: {req.interestedSuppliers.length}
                 </p>
 
-                {/* Durum mesajı */}
+                {/* Status message */}
                 {status ? (
                   <p
                     style={{
@@ -282,7 +281,7 @@ export default function CustomerPage() {
         )}
       </section>
 
-      {/* Talep Detay Modal */}
+      {/* Request Detail Modal */}
       {selectedRequest && (
         <div
           className="modal-overlay"

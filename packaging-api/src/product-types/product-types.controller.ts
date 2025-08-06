@@ -9,7 +9,7 @@ interface ProductType {
 
 @Controller('product-types')
 export class ProductTypeController {
-  // JSON dosyasının mutlak yolu
+  // JSON file path
   private dataPath = join(process.cwd(), 'src', 'data', 'productTypes.json');
 
   @Get()
@@ -29,7 +29,7 @@ export class ProductTypeController {
       const data = readFileSync(this.dataPath, 'utf8');
       const productTypes: ProductType[] = JSON.parse(data);
 
-      // Yeni id, mevcut son id + 1 veya 1
+      // New id
       const newId = productTypes.length ? productTypes[productTypes.length - 1].id + 1 : 1;
 
       const newProductType: ProductType = {
@@ -39,7 +39,6 @@ export class ProductTypeController {
 
       productTypes.push(newProductType);
 
-      // Dosyaya tekrar yaz
       writeFileSync(this.dataPath, JSON.stringify(productTypes, null, 2), 'utf8');
 
       return newProductType;

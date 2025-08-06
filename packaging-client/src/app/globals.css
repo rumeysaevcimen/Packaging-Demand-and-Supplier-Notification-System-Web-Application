@@ -1,7 +1,6 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
-/* Kendi özel stillerin */
 :root {
   --background: #ffffff;
   --foreground: #171717;

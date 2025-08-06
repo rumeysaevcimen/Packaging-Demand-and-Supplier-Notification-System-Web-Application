@@ -1,6 +1,6 @@
 import { JSX, useEffect, useState } from 'react';
 
-// Tip tanımlamaları
+// Type definition
 type User = {
   id: number;
   username: string;
@@ -23,7 +23,7 @@ type RequestRaw = {
   interestedSupplierIds: number[];
 };
 
-// Zenginleştirilmiş Request tipi
+// Request type
 type Request = {
   id: number;
   customerName: string;
@@ -43,11 +43,11 @@ export default function AdminPage() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [requests, setRequests] = useState<Request[]>([]);
 
-  // Modal için state
+  // Modal for state
   const [modalVisible, setModalVisible] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
 
-  // Ürün ekleme için yeni ürün adı
+  // New product name for product addition
   const [newProductName, setNewProductName] = useState('');
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function AdminPage() {
         setUsers(usersData);
         setProducts(productsData);
 
-        // Talepleri zenginleştir
+        // Requests
         const enrichedRequests: Request[] = requestsData.map((req) => {
           const customer = usersData.find((u) => u.id === req.customerId);
 
@@ -105,7 +105,7 @@ export default function AdminPage() {
     fetchData();
   }, []);
 
-  // Backend'e POST atarak ürün ekleme
+  // Add product with POST request
   const handleAddProduct = async () => {
     if (!newProductName.trim()) {
       alert('Lütfen ürün adı girin.');
@@ -138,7 +138,7 @@ export default function AdminPage() {
     }
   };
 
-  // Modal içeriği fonksiyonla render ediliyor
+  // Rendering modal content with function
   const renderModalContent = () => {
     switch (modalTitle) {
       case 'Tüm Müşteriler':
@@ -294,9 +294,9 @@ export default function AdminPage() {
     }
   };
 
-  // Modal açma fonksiyonu
+  // Modal switch-on function
   const openModal = (type: 'customers' | 'suppliers' | 'requests' | 'products') => {
-    setNewProductName(''); // Modal açılırken inputu sıfırla
+    setNewProductName(''); 
 
     let title = '';
     switch (type) {
@@ -322,7 +322,7 @@ export default function AdminPage() {
     <div className="container" style={{ padding: 20 }}>
       <h1 style={{ fontSize: 32, marginBottom: 32 }}>Yönetici Paneli</h1>
 
-      {/* Özet Kartlar */}
+      {/* Cards */}
       <section
         className="section"
         style={{
@@ -437,7 +437,7 @@ export default function AdminPage() {
         </div>
       </section>
 
-      {/* Kullanıcılar Tablosu */}
+      {/* Users Table */}
       <section className="section">
         <h2>Kullanıcılar</h2>
         <div style={{ overflowX: 'auto' }}>
@@ -500,7 +500,7 @@ export default function AdminPage() {
         </div>
       </section>
 
-      {/* Talepler Tablosu */}
+      {/* Requests Table */}
       <section className="section" style={{ marginTop: 40 }}>
         <h2>Talepler</h2>
         <div style={{ overflowX: 'auto' }}>

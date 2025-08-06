@@ -35,7 +35,7 @@ add(@Body() body: { customerId: number; products: { productTypeId: number; quant
     customerId: body.customerId,
     products: body.products,
     interestedSupplierIds: [],
-    createdAt: new Date().toISOString(), // 🕒 BURAYA EKLİYORSUN
+    createdAt: new Date().toISOString(), 
   };
 
   requests.push(newRequest);

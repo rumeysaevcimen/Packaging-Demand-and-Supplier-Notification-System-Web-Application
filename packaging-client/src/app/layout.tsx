@@ -1,4 +1,4 @@
-"use client"; // Bu satır dosyanın en üstünde olmalı
+"use client"; 
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

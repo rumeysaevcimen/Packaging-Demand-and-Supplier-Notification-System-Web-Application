@@ -23,7 +23,7 @@ export default function SupplierPage() {
   const STORAGE_KEY_CUSTOMER_REQUESTS = 'customer-order-requests';
   const STORAGE_KEY_STATUSES = 'customer-request-statuses';
 
-  // 1. Ürün tiplerini JSON’dan çek
+  // Pull product types from JSON
   useEffect(() => {
     async function fetchProductTypes() {
       try {
@@ -40,7 +40,7 @@ export default function SupplierPage() {
   }, []);
   
 
-  // 2. Talepleri localStorage’dan oku (ürün isimleri ürün tiplerine göre eşlenecek)
+  // Read requests from localStorage
   useEffect(() => {
     const storedRequests = localStorage.getItem(STORAGE_KEY_CUSTOMER_REQUESTS);
     const storedStatuses = localStorage.getItem(STORAGE_KEY_STATUSES);
@@ -60,13 +60,13 @@ export default function SupplierPage() {
           interestedSuppliers: string[];
         }[];
 
-        // Ürün id -> isim map
+        // Product id -> name map
         const productMap: Record<number, string> = {};
         allProductTypes.forEach(p => {
           productMap[p.id] = p.name;
         });
 
-        // Talepleri ürün isimlerine göre eşle
+        // Mapping requests by product names
         const requests: Request[] = customerRequests.map(r => ({
           id: r.id,
           customer: `Müşteri ${r.id}`,
@@ -93,9 +93,9 @@ export default function SupplierPage() {
       setAllRequests([]);
       setFilteredRequests([]);
     }
-  }, [allProductTypes]); // allProductTypes değişince tekrar çalışsın
+  }, [allProductTypes]); 
 
-  // 3. Filtreleme
+  // Filter
   useEffect(() => {
     if (productFilters.length === 0) {
       setFilteredRequests(allRequests);
