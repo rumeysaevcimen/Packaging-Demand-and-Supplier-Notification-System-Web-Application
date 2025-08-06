@@ -1,7 +1,7 @@
 # Packaging Supplier & Customer Portal
 
-A simple web application built with Next.js (React) frontend and NestJS backend for managing packaging product requests between customers and suppliers.  
-Supports basic authentication, product filtering, request management, and supplier interest tracking.
+A web application built with Next.js (React) frontend and NestJS backend to manage packaging product requests between customers and suppliers.
+It supports basic authentication, product filtering, demand management and supplier interest tracking.
 
 ---
 
