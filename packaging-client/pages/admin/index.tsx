@@ -173,9 +173,7 @@ export default function AdminPage() {
             style={{
               width: '100%',
               borderCollapse: 'collapse',
-              maxHeight: 400,
-              overflowY: 'auto',
-              display: 'block',
+              display: 'table', 
             }}
           >
             <thead
@@ -250,6 +248,7 @@ export default function AdminPage() {
               ))}
             </tbody>
           </table>
+
         );
 
       case 'Tüm Ürünler':
